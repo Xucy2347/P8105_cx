@@ -1,0 +1,58 @@
+---
+title: "Simple document"
+output:
+  html_document: default
+  word_document: default
+---
+
+I'm an R Markdown document! 
+
+```{r setup, message=FALSE}
+library(tidyverse)
+```
+
+# Section 1
+
+Here's a **code chunk** that samples from 
+a _normal distribution_:
+
+```{r}
+set.seed(1234)
+samp = rnorm(100)
+length(samp)
+```
+
+# Section 2
+
+I can take the mean of the sample, too!
+The mean is `r mean(samp)`.
+
+```{r}
+mean(samp)
+sd(samp)
+```
+
+Let's make a data frame
+```{r}
+sample_df =
+  tibble(
+    vec.numeric=1:4,
+    vec.char=c("my", "name", "is", "Jeff"),
+    vec.factor=factor(c("male","male", "female", "female"))
+  )
+```
+
+# section 4
+```{r, echo=FALSE}
+new_df = 
+  tibble(
+    x=rnorm(500, mean=1),
+    y=(x>0),
+    z=abs(x)
+  )
+
+ggplot(new_df, aes(x=z)) + geom_histogram() 
+median_samp <- round(median(new_df$z),2)
+```
+
+the sample median is `r round(median(new_df$z),2)`.

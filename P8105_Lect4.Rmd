@@ -1,0 +1,11 @@
+---
+title: "P8105_lect4"
+output: html_document
+data: Sep 11th 2025
+---
+
+```{r setup, message=FALSE}
+usethis::use_git_config(user.name = "Xucy2347", user.email = "cx2347@cumc.columbia.edu")
+
+library(tidyverse)
+```

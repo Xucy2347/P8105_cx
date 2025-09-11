@@ -1,0 +1,40 @@
+---
+title: "P8105_lect2"
+author: "Chuyuan XU"
+date: "2025-09-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
+```{r}
+example.df <-
+  tibble(
+    vec.numeric=1:4,
+    vec.char=c("my", "name", "is", "Jeff"),
+    vec.factor=factor(c("male","male", "female", "female"))
+  )
+
+plot_df=
+  tibble(
+      x=rnorm(1000, mean=1, sd=.5),
+      y=1+2*x+rnorm(1000)
+  )
+```
+
+## Including Plots
+
+```{r histogram, echo=FALSE}
+ggplot(plot_df, aes(x=x)) + geom_histogram()
+ggplot(plot_df, aes(x=y)) + geom_histogram()
+```
+
+```{r scatter plot, echo=FALSE}
+ggplot(plot_df, aes(x=x, y=y)) + geom_point()
+```
+
+```{r}
+ggsave("point plot.pdf", height=4, width=6)
+```
