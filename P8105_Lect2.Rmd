@@ -9,7 +9,7 @@ output: html_document
 library(tidyverse)
 ```
 
-```{r}
+```{r example code}
 example.df <-
   tibble(
     vec.numeric=1:4,
@@ -31,10 +31,12 @@ ggplot(plot_df, aes(x=x)) + geom_histogram()
 ggplot(plot_df, aes(x=y)) + geom_histogram()
 ```
 
+## Saving the plots
+
 ```{r scatter plot, echo=FALSE}
 ggplot(plot_df, aes(x=x, y=y)) + geom_point()
 ```
 
-```{r}
+```{r save the pic, include=FALSE}
 ggsave("point plot.pdf", height=4, width=6)
 ```
