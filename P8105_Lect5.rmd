@@ -10,7 +10,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-getwd()
+library(readxl)
+library(haven)
 ```
 
 Let's import a dataset
@@ -20,10 +21,76 @@ litters_df <-
     read_csv("data_import_examples/FAS_litters.csv")
 ```
 
-look at the data
+look at the data variables
 
 ```{r}
 names(litters_df)
+
+litters_df = 
+    janitor::clean_names(litters_df) # change the name into lowercase
 ```
 
+look at the whole data
+
+```{r}
+litters_df
+```
+
+Some skimming?
+
+```{r}
+skimr::skim(litters_df)
+```
+
+# fix the missing data
+
+```{r}
+litters_df2 =
+    read_csv("data_import_examples/FAS_litters.csv", na = c("NA", ".", ""))
+```
+
+# Skip some lines
+
+```{r}
+pups_df =
+    read_csv("data_import_examples/FAS_pups.csv", 
+    skip =3, 
+    na = c("NA", ".", "")
+    )
+
+pups_df = 
+    janitor::clean_names(pups_df)
+```
+
+# What should we do to EXCEL?
+
+```{r}
+LotR_df1 = 
+  read_excel("data_import_examples/LotR_Words.xlsx")
+
+LotR_df2 = 
+  read_excel("data_import_examples/LotR_Words.xlsx", range="B3:D6")
+
+LotR_df2
+```
+
+# SAS table
+
+```{r}
+pulse_df =
+  read_sas("data_import_examples/public_pulse_data.sas7bdat")
+```
+
+# Why not read.csv
+
+```{r, eval=false}
+litters_df_hate =
+    read.csv("data_import_examples/FAS_pups.csv")
+```
+
+# export the data
+
+```{r}
+write_csv(pulse_df, "data_import_examples/public_pulse_data.csv")
+```
 
