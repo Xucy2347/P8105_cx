@@ -1,0 +1,12 @@
+---
+title: "P8105_Lect5"
+author: "Chuyuan XU"
+date: "2025-09-16"
+output: html_document
+---
+
+# Data Wrangling I: Data Import
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
