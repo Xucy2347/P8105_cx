@@ -1,5 +1,5 @@
 ---
-title: "Simple document"
+title: "P8105_Lect6: Data Import"
 output: html_document
 ---
 

@@ -1,0 +1,99 @@
+---
+title: "P8105_Lect5: Data Manipulation"
+author: "Chuyuan XU"
+date: "2025-09-16"
+output: html_document
+---
+
+I'm an R Markdown document! 
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+data import
+
+```{r}
+litters_df = 
+  read_csv("data/FAS_litters.csv", na = c("NA", ".", "")) %>%
+  janitor::clean_names()
+
+pups_df =
+  read_csv("data/FAS_pups.csv", skip=3, na = c("NA", ".", "")) %>%
+  janitor::clean_names()
+```
+
+## "Select"
+
+```{r}
+select(litters_df, group, starts_with("gd"))
+select(litters_df, litter_number, everything())
+
+relocate(litters_df, litter_number)
+```
+
+rename by selecting
+
+```{r}
+select(litters_df, GROUP = group, everything())
+rename(litters_df, GROUP = group)
+```
+
+what if I only select one variable?
+
+```{r}
+select(litters_df, group)
+pull(litters_df, group)
+```
+
+filter
+
+```{r}
+filter(pups_df, sex == 1)
+filter(pups_df, pd_walk < 11, sex == 2)
+filter(pups_df, pd_pivot == 7)
+```
+
+mutate
+
+```{r}
+mutate(
+  litters_df,
+  wt_goin = gd18_weight - gd0_weight
+)
+```
+
+arrange
+
+```{r}
+arrange(litters_df, pups_born_alive)
+```
+
+Learning assessement
+
+```{r}
+# loads the pups data
+# cleans the variable names
+# filters the data to include only pups with sex 1
+# removes the PD ears variable
+# creates a variable that indicates whether PD pivot is 7 or more days
+
+pups1 = 
+  read_csv("data/FAS_pups.csv", skip=3, na=c("NA", ".", "")) %>%
+  janitor::clean_names() %>%
+  filter(sex == 1) %>%
+  select(-pd_ears) %>%
+  mutate(pd_pivot_ind = (pd_pivot >= 7))
+
+
+pups2 = 
+  read_csv("data/FAS_pups.csv", skip=3, na=c("NA", ".", "")) |>
+  janitor::clean_names() |>
+  filter(sex == 1) |>
+  select(-pd_ears) |>
+  mutate(pd_pivot_ind = (pd_pivot >= 7))
+
+summary(comparedf(pups1, pups2))
+```
+

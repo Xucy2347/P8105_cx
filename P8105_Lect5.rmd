@@ -18,7 +18,7 @@ Let's import a dataset
 
 ```{r}
 litters_df <-
-    read_csv("data_import_examples/FAS_litters.csv")
+    read_csv("data/FAS_litters.csv")
 ```
 
 look at the data variables
@@ -46,14 +46,14 @@ skimr::skim(litters_df)
 
 ```{r}
 litters_df2 =
-    read_csv("data_import_examples/FAS_litters.csv", na = c("NA", ".", ""))
+    read_csv("data/FAS_litters.csv", na = c("NA", ".", ""))
 ```
 
 # Skip some lines
 
 ```{r}
 pups_df =
-    read_csv("data_import_examples/FAS_pups.csv", 
+    read_csv("data/FAS_pups.csv", 
     skip =3, 
     na = c("NA", ".", "")
     )
@@ -66,10 +66,10 @@ pups_df =
 
 ```{r}
 LotR_df1 = 
-  read_excel("data_import_examples/LotR_Words.xlsx")
+  read_excel("data/LotR_Words.xlsx")
 
 LotR_df2 = 
-  read_excel("data_import_examples/LotR_Words.xlsx", range="B3:D6")
+  read_excel("data/LotR_Words.xlsx", range="B3:D6")
 
 LotR_df2
 ```
@@ -78,19 +78,19 @@ LotR_df2
 
 ```{r}
 pulse_df =
-  read_sas("data_import_examples/public_pulse_data.sas7bdat")
+  read_sas("data/public_pulse_data.sas7bdat")
 ```
 
 # Why not read.csv
 
 ```{r, eval=false}
 litters_df_hate =
-    read.csv("data_import_examples/FAS_pups.csv")
+    read.csv("data/FAS_pups.csv")
 ```
 
 # export the data
 
 ```{r}
-write_csv(pulse_df, "data_import_examples/public_pulse_data.csv")
+write_csv(pulse_df, "data/public_pulse_data.csv")
 ```
 
